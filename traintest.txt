@@ -1,0 +1,11 @@
+CUDA_VISIBLE_DEVICES=0,1 \
+python -m torch.distributed.launch --nproc_per_node=2 --master_port=4321 basicsr/train.py -opt options/train/IFANet/train_NAFBlockStyleMod_IFRNet.yml --launcher pytorch
+
+
+
+CUDA_VISIBLE_DEVICES=0 \
+python basicsr/train.py -opt options/train/IFANet/train_NAFBlockStyleMod_IFRNet.yml
+
+
+CUDA_VISIBLE_DEVICES=1 \
+python basicsr/train.py -opt options/train/IFANet/train_NAFBlockStyleMod_IFRNet.yml

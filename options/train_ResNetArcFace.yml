@@ -1,0 +1,80 @@
+#### general settings
+name: IFFI-ResNetArcFace
+model_type: ClassModel
+scale: 1
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+#### datasets
+datasets:
+  train:
+    name: IFFI
+    type: IFFIDatasetFilterClass
+    dataroot: datasets/IFFI/IFFI-dataset-lr-train
+    data_range: 255.
+    num_class: 16
+    guidedFilter: false
+
+    use_flip: true
+    use_rot: true
+    # data loader
+    use_shuffle: true
+    num_worker_per_gpu: 6
+    batch_size_per_gpu: 16
+    pin_memory: false
+    dataset_enlarge_ratio: 1
+    prefetch_mode: ~
+
+
+#### network structures
+network_g:
+  type: ResNetArcFace
+  in_channels: 3
+  block: IRBlock
+  layers: [1,1,1,1]
+  embedding: 32
+
+#### path
+path:
+  pretrain_network_g: ~
+  strict_load_g: true
+  resume_state: ~
+
+#### training settings: learning rate scheme, loss
+train:
+  optim_g:
+    type: AdamW
+    lr: !!float 1e-4
+    weight_decay: 0
+    betas: [0.9, 0.999]
+
+  scheduler:
+    type: MultiStepLR
+    milestones: [20000]
+    gamma: 0.5
+
+  use_grad_clip: true
+  total_iter: 40000
+  warmup_iter: -1  # no warm up
+  fix_flow: 5000
+  flow_lr_mul: 0.125
+
+  # losses
+  class_opt:
+    type: ArcFaceLoss
+    loss_weight: 1.0
+    feat_dim: 32
+    num_class: 16
+    s: 64
+    m: 0.5
+
+# # logging settings
+logger:
+  print_freq: 200
+  save_checkpoint_freq: !!float 5e3
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+
