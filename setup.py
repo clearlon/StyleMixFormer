@@ -8,7 +8,7 @@ import time
 import torch
 from torch.utils.cpp_extension import BuildExtension, CppExtension, CUDAExtension
 
-version_file = 'basicsr/version.py'
+version_file = 'styleformer/version.py'
 
 
 def readme():

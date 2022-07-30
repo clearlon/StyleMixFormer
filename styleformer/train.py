@@ -6,8 +6,8 @@ import torch
 from os import path as osp
 import os
 
-import sys
-sys.path.append('/data/disk2/longshaoyi/project/StyleFormer/') # your root path
+# import sys
+# sys.path.append('/data/disk2/longshaoyi/project/StyleFormer/') # your root path
 from styleformer.data import build_dataloader, build_dataset
 from styleformer.data.data_sampler import EnlargedSampler
 from styleformer.data.prefetch_dataloader import CPUPrefetcher, CUDAPrefetcher
