@@ -36,7 +36,7 @@ network_g:
   dec_blk_nums: [1,1,1,1]
   drop_type: 'dropout'
   drop_out_rate: 0.5
-  load_path: 'experiments/pretrained/resnetarcface.pth'
+  load_path: 'experiments/pretrained_models/resnetarcface.pth'
 
 #### path
 path:

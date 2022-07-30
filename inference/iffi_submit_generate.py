@@ -4,14 +4,11 @@ import cv2
 import torch
 import argparse
 
-import sys
-sys.path.append('/data/disk2/longshaoyi/project/StyleFormer/')
 
 from styleformer.archs.styleformer_arch import StyleFormerNet
 from styleformer.utils.img_util import tensor2img
 
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 device = torch.device('cuda')
 
 def main(args):
@@ -34,15 +31,13 @@ def main(args):
             model = StyleFormerNet(
                 enc_blk_nums=[1, 1, 7, 7],
                 middle_blk_num=2,
-                load_path='experiments/pretrained/resnetarcface.pth'
+                load_path='experiments/pretrained_models/resnetarcface.pth'
             )
             # print(model)
             model.load_state_dict(torch.load(args.model_path)['params'], strict=True)
             model.eval()
             model = model.to(device)
-            for m in model.modules():
-                if hasattr(m, 'switch_to_deploy'):
-                    m.switch_to_deploy()
+
             unfiltered_img = model(filtered_img)
             # save .png
             unfiltered_img = tensor2img(unfiltered_img, rgb2bgr=False, out_type=np.uint8, data_range=255)
@@ -55,9 +50,9 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_path', type=str, default="experiments/StyleFormerNet/net_g_latest.pth")
+    parser.add_argument('--model_path', type=str, default="experiments/pretrained_models/styleformer.pth")
     parser.add_argument('--input_path', type=str, default="datasets/IFFI/IFFI-dataset-lr-test")
-    parser.add_argument('--output_path', type=str, default="results/IFFI/StyleFormerNet-581000")
+    parser.add_argument('--output_path', type=str, default="results/IFFI/StyleFormerNet2-581000")
 
     args = parser.parse_args()
     main(args)

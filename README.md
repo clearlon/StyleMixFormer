@@ -1,39 +1,33 @@
-# BasicIR
+# StyleFormer for Instagram Filter Removal
 
-#### This implementation based on BasicSR which is a open source toolbox for image/video restoration tasks
+# Description
+The official implementation of the User clearlon On the [AIM 2022 Instagram Filter Removal Challenge](https://codalab.lisn.upsaclay.fr/competitions/5081#results). We propose a method for removing Instagram filters from the images by assuming the affects of filters as the style information.
 
-Install BasicSR
-Please run the following commands in the BasicSR root path to install BasicSR:
-
-If you do not need C++ extensions (more details are here):
-
+# Installation
+```
 python setup.py develop
-If you want to use C++ extensions in JIT mode without compiling them during installatoin (more details are here):
+```
 
-python setup.py develop
-If you want to compile C++ extensions during installation, please set the environment variable BASICSR_EXT=True:
+# Dataset
+[IFFI dataset](https://codalab.lisn.upsaclay.fr/competitions/5081#participate) contains high-resolution (1080×1080) 600 images and with 16 different filtered versions for each. In particular, we have picked mostly-used 16 filters: 1977, Amaro, Brannan, Clarendon, Gingham, He-Fe, Hudson, Lo-Fi, Mayfair, Nashville, Perpetua, Sutro, Toaster, Valencia, ~~Willow~~, X-Pro II. 
 
-BASICSR_EXT=True python setup.py develop
+# Training
+## Single GPU Training
+```
+CUDA_VISIBLE_DEVICES=0 \
+python basicsr/train.py -opt options/train_StyleFormer.yml
+```
+## Distributed Training
+### Two GPU
+```
+CUDA_VISIBLE_DEVICES=0,1 \
+python -m torch.distributed.launch --nproc_per_node=2 --master_port=4321 basicsr/train.py -opt options/train_StyleFormer.yml --launcher pytorch
+```
 
-#### 使用说明
+# Evaluation
+```
+CUDA_VISIBLE_DEVICES=0 python inference/iffi_submit_generate.py
+```
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+# Acknowledgement
+This repository is built on [BasicSR](https://github.com/XPixelGroup/BasicSR). Our work is also inspired by [ArcFace](https://github.com/deepinsight/insightface/tree/master/recognition/arcface_torch), [GFPGAN](https://github.com/TencentARC/GFPGAN), and [StyleGAN2](https://github.com/NVlabs/stylegan2-ada-pytorch).

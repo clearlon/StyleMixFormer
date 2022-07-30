@@ -17,8 +17,6 @@ from styleformer.utils import (MessageLogger, check_resume, get_env_info, get_ro
 from styleformer.utils.options import dict2str, parse_options
 
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-
 def init_tb_loggers(opt):
     # initialize wandb logger before tensorboard logger to allow proper sync
     if (opt['logger'].get('wandb') is not None) and (opt['logger']['wandb'].get('project')
