@@ -249,7 +249,6 @@ class AttentionCC(nn.Module):
         return out
 
 
-
 class MixRestormer(nn.Module):
     """
     conv mix transformer for image restoration
