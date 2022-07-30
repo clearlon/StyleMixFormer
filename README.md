@@ -1,14 +1,6 @@
 # BasicIR
 
-#### 介绍
-私有的图像修复仓库
-
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-##### This implementation based on BasicSR which is a open source toolbox for image/video restoration tasks
+#### This implementation based on BasicSR which is a open source toolbox for image/video restoration tasks
 
 Install BasicSR
 Please run the following commands in the BasicSR root path to install BasicSR:
