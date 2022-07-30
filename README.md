@@ -4,6 +4,19 @@
 The official implementation of the User clearlon On the [AIM 2022 Instagram Filter Removal Challenge](https://codalab.lisn.upsaclay.fr/competitions/5081#results). We propose a method for removing Instagram filters from the images by assuming the affects of filters as the style information.
 
 # Installation
+Clone our repository
+```
+git clone https://github.com/clearlon/StyleFormer.git
+
+cd StyleFormer 
+```
+
+To install requirements:
+```
+pip install -r requirements.txt
+```
+
+Install
 ```
 python setup.py develop
 ```
@@ -25,9 +38,12 @@ python -m torch.distributed.launch --nproc_per_node=2 --master_port=4321 basicsr
 ```
 
 # Evaluation
+Download pretrained model from [Google Drive](https://drive.google.com/drive/folders/15ip14nh7vd1v6qxf_CU-axGQmdGDlaT5) and put it in the `experiments/pretrained` path.
 ```
 CUDA_VISIBLE_DEVICES=0 python inference/iffi_submit_generate.py
 ```
+
+# Citation
 
 # Acknowledgement
 This repository is built on [BasicSR](https://github.com/XPixelGroup/BasicSR). Our work is also inspired by [ArcFace](https://github.com/deepinsight/insightface/tree/master/recognition/arcface_torch), [GFPGAN](https://github.com/TencentARC/GFPGAN), and [StyleGAN2](https://github.com/NVlabs/stylegan2-ada-pytorch).
