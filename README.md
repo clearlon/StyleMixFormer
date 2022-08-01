@@ -46,4 +46,4 @@ CUDA_VISIBLE_DEVICES=0 python inference/iffi_submit_generate.py
 # Citation
 
 # Acknowledgement
-This repository is built on [BasicSR](https://github.com/XPixelGroup/BasicSR). Our work is also inspired by [ArcFace](https://github.com/deepinsight/insightface/tree/master/recognition/arcface_torch), [GFPGAN](https://github.com/TencentARC/GFPGAN), and [StyleGAN2](https://github.com/NVlabs/stylegan2-ada-pytorch).
+This repository is built on [BasicSR](https://github.com/XPixelGroup/BasicSR). Our work is also inspired by [ArcFace](https://github.com/deepinsight/insightface/tree/master/recognition/arcface_torch), [MixFormer](https://arxiv.org/pdf/2204.02557.pdf), and [StyleGAN2](https://github.com/NVlabs/stylegan2-ada-pytorch).
