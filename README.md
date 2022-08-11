@@ -38,7 +38,7 @@ python -m torch.distributed.launch --nproc_per_node=2 --master_port=4321 basicsr
 ```
 
 # Evaluation
-Download pretrained model from [Google Drive](https://drive.google.com/drive/folders/15ip14nh7vd1v6qxf_CU-axGQmdGDlaT5) and put it in the `experiments/pretrained` path.
+Download pretrained model from [Google Drive](https://drive.google.com/drive/folders/15ip14nh7vd1v6qxf_CU-axGQmdGDlaT5?usp=sharing) and put it in the `experiments/pretrained` path.
 ```
 CUDA_VISIBLE_DEVICES=0 python inference/iffi_submit_generate.py
 ```
