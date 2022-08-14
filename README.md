@@ -1,4 +1,4 @@
-# StyleFormer for Instagram Filter Removal
+# StyleMixFormer for Instagram Filter Removal
 
 # Description
 The official implementation of the User clearlon On the [AIM 2022 Instagram Filter Removal Challenge](https://codalab.lisn.upsaclay.fr/competitions/5081#results). We propose a method for removing Instagram filters from the images by assuming the affects of filters as the style information.
